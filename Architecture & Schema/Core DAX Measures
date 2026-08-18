@@ -1,0 +1,99 @@
+
+## 🧮 Core DAX Measures
+
+### 1. Operational & Clinical Metrics
+
+```dax
+// Average Length of Stay (Excludes Outpatient)
+Average Length Of Stay = 
+CALCULATE(
+    AVERAGE(Fact_Visits[LengthOfStay]),
+    Fact_Visits[ServiceType] <> "Outpatient"
+)
+
+// Total Inpatient Bed Days
+Total Bed Days = 
+CALCULATE(
+    SUM(Fact_Visits[LengthOfStay]),
+    Fact_Visits[ServiceType] = "Inpatient"
+)
+
+// Emergency Encounter Volume
+Emergency Visits = 
+CALCULATE(
+    COUNTROWS(Fact_Visits),
+    Fact_Visits[ServiceType] = "Emergency"
+)
+
+// Average Treatment Billing Per Visit
+Average Treatment Cost = 
+AVERAGE(Fact_Visits[TreatmentCost])
+
+// Average Medication/Clinical Overhead Cost
+Clinical Overhead Cost = 
+AVERAGE(Fact_Visits[MedicationCost])
+
+------PAGE 2 Measures ---------
+
+// Cumulative Billed Revenue
+Gross Revenue = 
+SUM(Fact_Visits[GrossAmount])
+
+// Uncollected Outstanding Billing
+Pending Revenue = 
+CALCULATE(
+    SUM(Fact_Visits[GrossAmount]),
+    Fact_Visits[PaymentStatus] = "Pending"
+)
+
+// Share of Billed Revenue Uncollected
+Uncollected A/R Exposure = 
+DIVIDE(
+    [Pending Revenue],
+    [Gross Revenue],
+    0
+)
+
+// Total Patient Encounters
+Total Visits = 
+COUNTROWS(Fact_Visits)
+
+----------Page 3 Measures-----------
+// Overall CSAT Index
+Average Patient Satisfaction = 
+AVERAGE(Fact_Visits[SatisfactionScore])
+
+// High Satisfaction Patient Count (Score >= 5)
+5+ Rating Share = 
+CALCULATE(
+    COUNTROWS(Fact_Visits),
+    Fact_Visits[SatisfactionScore] >= 5
+)
+
+// At-Risk Patient Count (Score < 4)
+Low-Rating Risk Share Count = 
+CALCULATE(
+    COUNTROWS(Fact_Visits),
+    Fact_Visits[SatisfactionScore] < 4
+)
+
+// Inpatient Care CSAT
+Inpatient Satisfaction Score = 
+CALCULATE(
+    AVERAGE(Fact_Visits[SatisfactionScore]),
+    Fact_Visits[ServiceType] = "Inpatient"
+)
+
+// Outpatient Care CSAT
+Outpatient Satisfaction Score = 
+CALCULATE(
+    AVERAGE(Fact_Visits[SatisfactionScore]),
+    Fact_Visits[ServiceType] = "Outpatient"
+)
+
+// Emergency Room CSAT
+EMR CSAT = 
+CALCULATE(
+    AVERAGE(Fact_Visits[SatisfactionScore]),
+    Fact_Visits[ServiceType] = "Emergency"
+)
