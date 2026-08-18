@@ -1,0 +1,61 @@
+# HealthCare Operations & Revenue Optimization Dashboard
+
+An end-to-end Power BI analytics solution designed to monitor clinical operations, evaluate revenue risk, and measure patient satisfaction across hospital departments and attending physicians.
+
+---
+
+## 📊 Dashboard Pages & Visual Architecture
+
+### Page 1: Care Delivery & Operational Efficiency
+
+Focuses on clinical throughput, treatment/medication cost drivers, and physician-level operational performance.
+
+#### Key Performance Indicators (KPI Cards)
+* **Average Length Of Stay (4.87 Days):** Measures average inpatient duration. Excludes outpatient encounters.
+* **Total Bed Days (1,245 Days):** Total cumulative days spent by patients in inpatient care.
+* **Emergency Visits (1,929):** Total volume of emergency department encounters.
+* **Average Treatment Cost ($526.08):** Mean billing amount per visit across all stay types.
+* **Clinical Overhead Cost ($109.21):** Mean medication and administrative clinical cost per visit.
+
+#### Visual Breakdown
+* **Revenue & Volume by Service Type (Horizontal Bar Chart):** Compares total gross revenue generated across Outpatient ($1.66M), Inpatient ($0.86M), and Emergency ($0.84M) service lines.
+* **Revenue & Volume by Procedure (Stacked Horizontal Bar Chart):** Breaks down actual gross revenue versus pending uncollected revenue by clinical procedure (X-Ray, CT Scan, MRI Scan, Ultrasound, Blood Test).
+* **Average Treatment & Medication Cost by Specialty (Clustered Column & Line Combo Chart):** Evaluates average treatment cost (columns) against average medication cost (line) across medical specialties (Neurology, Cardiology, Orthopedics, General Surgery, Pediatrics).
+* **Doctor Operational Performance (Matrix Visual):** Detailed table profiling attending physicians across Total Visits, IPD count, EMR count, Treatment Billing, Medication Billing, Generated Revenue, and Uncollected Revenue %.
+
+---
+
+### Page 2: Revenue & Financial Overview
+
+Focuses on financial health, accounts receivable exposure, billing realization, and payer-level risk.
+
+#### Key Performance Indicators (KPI Cards)
+* **Gross Revenue ($3M):** Cumulative gross billed amount across all hospital services.
+* **Total Visits (5,000):** Total patient encounter volume across all departments.
+* **Pending Revenue ($1.31M):** Uncollected accounts receivable (A/R) balance currently outstanding.
+* **Uncollected A/R Exposure (39.11%):** Share of total gross billing that remains uncollected.
+* **Average Satisfaction (3.84/10):** Overall patient CSAT index score across all departments.
+
+#### Visual Breakdown
+* **Monthly Gross Revenue vs. Pending Collection Risk (Clustered Column & Line Combo Chart):** Tracks monthly gross revenue actuals (bars) against pending uncollected revenue trends (line) over time (Jan 2024 – May 2025) to highlight realization bottlenecks.
+* **Pending A/R Exposure by Insurance Provider (Horizontal Bar Chart):** Compares uncollected accounts receivable balances across major insurance payers (Allianz: $0.45M, Aviva: $0.44M, AXA: $0.43M).
+
+---
+
+### Page 3: Patient Satisfaction & Quality Index
+
+Focuses on care delivery quality, CSAT distribution across care settings, and doctor-level satisfaction ratings.
+
+#### Key Performance Indicators (KPI Cards)
+* **Average Patient Satisfaction (3.84):** Overall hospital CSAT average.
+* **5+ Rating Share (1,766):** Total volume of patients rating their experience 5 or higher.
+* **Low-Rating Risk Share % (1,929):** Volume of patients rating their experience below 4 (risk threshold).
+* **Inpatient Satisfaction Score (4.37):** Average CSAT score for admitted IPD patients.
+* **Outpatient Satisfaction Score (3.36):** Average CSAT score for OPD patients.
+
+#### Visual Breakdown
+* **Average Satisfaction by Specialty (Horizontal Bar Chart):** Ranks clinical specialties by patient satisfaction scores (Orthopedics leads at 4.8; General Surgery/Cardiology lowest at 3.1).
+* **Average Satisfaction by Service Type (Vertical Column Chart):** Compares CSAT across service settings (Inpatient: 4.4, Emergency: 4.3, Outpatient: 3.4).
+* **Provider Satisfaction Scorecard (Custom Matrix Visual):** Displays doctor profile images alongside performance indicators for Average Patient CSAT, EMR CSAT, IPD CSAT, and OPD CSAT, complete with KPI direction indicators and alert formatting.
+
+---
