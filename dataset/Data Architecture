@@ -1,0 +1,38 @@
+The data model uses a standard Star Schema:
+
+Fact Table: 
+
+Fact_Visits (Contains transactional records for patient encounters, billing, stay duration, service types, and satisfaction scores).
+
+Dimension Tables:
+
+Dim_cities ( Cities, Cities ID ) 
+
+Dim_departments (Departments, Department IDs) 
+
+Dim_procedures ( Procedures, Procedure IDs)
+
+Dim_Patients (Demographics, patient IDs)
+
+Dim_Providers (Doctor names, specialty, headshot image URIs)
+
+Dim_Insurance (Payer names, policy details)
+
+Dim_Date (Calendar reference table for time-intelligence calculations)
+## DAX For Creating the Date Table 
+##
+Dim_Date = 
+VAR MinDate = MIN('Fact-visits'[Date of Visit])
+VAR MaxDate = MAX('Fact-visits'[Date of Visit])
+RETURN
+ADDCOLUMNS (
+    CALENDAR(MinDate, MaxDate),
+    "Year", YEAR([Date]),
+    "Month No", MONTH([Date]),
+    "Month", FORMAT([Date], "MMM"),
+    "Year-Month", FORMAT([Date], "MMM YYYY"),
+    "YearMonthSort", YEAR([Date]) * 100 + MONTH([Date]),
+    "Quarter", "Q" & FORMAT([Date], "Q")
+)
+
+---
